@@ -1,18 +1,43 @@
-def sum_positive_negative(string):
-    positive_sum = 0
-    negative_sum = 0
-    numbers = string.split()
-    for num in numbers:
-        try:
-            num = int(num)
-            if num > 0:
-                positive_sum += num
-            elif num < 0:
-                negative_sum += num
-        except ValueError:
-            pass
-    return positive_sum, negative_sum
-input_string = ""
-positive_sum, negative_sum = sum_positive_negative(input_string)
-print("Giá trị dương:", positive_sum)
-print("Giá trị âm:", negative_sum)
+def sum_integers(string):
+  """
+  Tính tổng các số nguyên trong chuỗi.
+
+  Args:
+    string: Chuỗi đầu vào.
+
+  Returns:
+    Tuple (sum_positive, sum_negative):
+      * sum_positive: Tổng các số nguyên dương.
+      * sum_negative: Tổng các số âm.
+  """
+  sum_positive = 0
+  sum_negative = 0
+  number = ""
+  is_positive = True
+
+  for char in string:
+    if char.isdigit():
+      number += char
+    else:
+      if number:
+        number = int(number)
+        if is_positive:
+          sum_positive += number
+        else:
+          sum_negative += number
+        number = ""
+        is_positive = False
+    is_positive = is_positive or char == "+"
+
+  if number:
+    number = int(number)
+    if is_positive:
+      sum_positive += number
+    else:
+      sum_negative += number
+
+  return sum_positive, sum_negative
+string = "-100#^sdfkj8902w3ir021@swf-20"
+sum_positive, sum_negative = sum_integers(string)
+print(f"Giá trị dương: {sum_positive}")
+print(f"Giá trị âm: {sum_negative}")
