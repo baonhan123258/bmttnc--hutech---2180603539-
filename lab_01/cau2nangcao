@@ -1,0 +1,43 @@
+def sum_integers(string):
+  """
+  Tính tổng các số nguyên trong chuỗi.
+
+  Args:
+    string: Chuỗi đầu vào.
+
+  Returns:
+    Tuple (sum_positive, sum_negative):
+      * sum_positive: Tổng các số nguyên dương.
+      * sum_negative: Tổng các số âm.
+  """
+  sum_positive = 0
+  sum_negative = 0
+  number = ""
+  is_positive = True
+
+  for char in string:
+    if char.isdigit():
+      number += char
+    else:
+      if number:
+        number = int(number)
+        if is_positive:
+          sum_positive += number
+        else:
+          sum_negative += number
+        number = ""
+        is_positive = False
+    is_positive = is_positive or char == "+"
+
+  if number:
+    number = int(number)
+    if is_positive:
+      sum_positive += number
+    else:
+      sum_negative += number
+
+  return sum_positive, sum_negative
+string = "-100#^sdfkj8902w3ir021@swf-20"
+sum_positive, sum_negative = sum_integers(string)
+print(f"Giá trị dương: {sum_positive}")
+print(f"Giá trị âm: {sum_negative}")
