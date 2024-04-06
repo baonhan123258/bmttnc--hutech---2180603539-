@@ -1,11 +1,8 @@
 from itertools import permutations
 
-# Hàm để in tất cả các hoán vị của một danh sách
 def print_permutations(lst):
     perm = permutations(lst)
     for p in perm:
         print(p)
-
-# Danh sách ban đầu
 lst = [1, 2, 3]
 print_permutations(lst)

@@ -1,0 +1,18 @@
+def sum_positive_negative(string):
+    positive_sum = 0
+    negative_sum = 0
+    numbers = string.split()
+    for num in numbers:
+        try:
+            num = int(num)
+            if num > 0:
+                positive_sum += num
+            elif num < 0:
+                negative_sum += num
+        except ValueError:
+            pass
+    return positive_sum, negative_sum
+input_string = ""
+positive_sum, negative_sum = sum_positive_negative(input_string)
+print("Giá trị dương:", positive_sum)
+print("Giá trị âm:", negative_sum)
